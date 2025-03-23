@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoboRule", "RoboRule.csproj", "{0E75208B-F9E7-54F5-BB6E-0B91801B426F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0E75208B-F9E7-54F5-BB6E-0B91801B426F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E75208B-F9E7-54F5-BB6E-0B91801B426F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E75208B-F9E7-54F5-BB6E-0B91801B426F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E75208B-F9E7-54F5-BB6E-0B91801B426F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1F0BF1A4-A1FE-4F1B-8018-A6EFBDF828E5}
+	EndGlobalSection
+EndGlobal
