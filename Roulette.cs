@@ -1,11 +1,26 @@
 using System.Text.Json;
 using System.Threading;
 using System.Net.Http;
+using System.Linq;
 
 class Roulette
 {
-    public async Task LaunchRoulette()
+    public string Name { get; set; }
+    public int Score { get; set; }
+    public int Tickets { get; set; }
+
+    public Roulette(string name)
     {
+        Name = name;
+        Score = 0;
+        Tickets = 10;
+    }
+
+    // Realiza una tirada de la ruleta
+    public async Task<int[]> LaunchRoulette()
+    {
+        if (Tickets <= 0) return new int[0];
+
         Console.Clear();
         char[] randomSlots = { '$', '%', '@', '#', '&', '+', '!', '?', '¿', '7' };
         char[] finalSlots = { '#', '$', '7' };
@@ -20,9 +35,13 @@ class Roulette
             Console.Clear();
         }
 
-        ShowLastRoll(lastRoll, finalSlots, random);
+        ShowFinalRoll(lastRoll, finalSlots, random);
+        ShowResult(lastRoll);
+
+        return lastRoll;
     }
 
+    // Consigue la combinación final en base la API
     public async Task<int[]> GetRobotRoll()
     {
         using HttpClient client = new HttpClient();
@@ -36,70 +55,91 @@ class Roulette
         }
         catch (Exception ex)
         {
-            Console.WriteLine("Error: " + ex.Message);
-            return Array.Empty<int>();
+            UI.WriteLine("Error: " + ex.Message);
+            return new int[0];
         }
     }
 
-    public void ShowLastRoll(int[] lastRoll, char[] slots, Random random)
+    // Mostramos la combinación final en la linea central y otras de relleno
+    public void ShowFinalRoll(int[] lastRoll, char[] slots, Random random)
     {
-        Console.WriteLine("    +-+-+-+-+-+");
+        UI.WriteLine("    +-+-+-+-+-+", 4);
         for (var i = 0; i < 3; i++)
         {
             if (i == 1) 
             {
-                Console.Write("--> | ");
+                UI.Write("--> | ", 4);
                 WinnerRoll(lastRoll, slots);
-                Console.Write(" <--");
+                UI.Write(" <--", 4);
             }
 
             else 
             {
-                Console.Write("    | ");
+                UI.Write("    | ", 4);
                 RandomRoll(slots, random);
             }
 
             Console.WriteLine();
-            Console.WriteLine("    +-+-+-+-+-+");
+            UI.WriteLine("    +-+-+-+-+-+", 4);
         }
     }
 
+    // Muestra el resultado en base a tu combinación
+    public void ShowResult(int[] roll)
+    {
+        // Comprobar:
+        // if Triple
+        // elif Double
+        // else No Combo
+    }
+
+    // Animación de la tirada mientras esperamos la combinación final
     public void RollAnimation(char[] slots, Random random)
     {
-        Console.WriteLine("    +-+-+-+-+-+");
+        UI.WriteLine("    +-+-+-+-+-+", 4);
         for (var i = 0; i < 3; i++)
         {
-            if (i == 1) Console.Write("--> | ");
+            if (i == 1) UI.Write("--> | ", 4);
 
-            else Console.Write("    | ");
+            else UI.Write("    | ");
 
             RandomRoll(slots, random);
 
-            if (i == 1) Console.Write(" <--");
+            if (i == 1) UI.Write(" <--", 4);
 
             Console.WriteLine();
-            Console.WriteLine("    +-+-+-+-+-+");
+            UI.WriteLine("    +-+-+-+-+-+", 4);
         }
     }
 
+    // Combinación aleatoria
     public void RandomRoll(char[] slots, Random random)
     {
         for (var i = 0; i < 3; i++)
         {
             int selected = random.Next(0, slots.Length);
-            if (i != 2) Console.Write($"{slots[selected]}  ");
-            else Console.Write($"{slots[selected]} |");
-
+            if (i != 2) UI.Write($"{slots[selected]}  ", selected);
+            else 
+            {
+                UI.Write($"{slots[selected]} ", selected);
+                UI.Write($"|", 4);
+            }
         }
     }
 
+    // Combinación final
     public void WinnerRoll(int[] roll, char[] slots)
     {
         for (var i = 0; i < 3; i++)
         {
             int selected = roll[i];
-            if (i != 2) Console.Write($"{slots[selected]}  ");
-            else Console.Write($"{slots[selected]} |");
+            if (i != 2) 
+                UI.Write($"{slots[selected]}  ", roll[i]);
+            else 
+            {
+                UI.Write($"{slots[selected]} ", roll[i]);
+                UI.Write($"|");
+            }
         }
     }
 }
