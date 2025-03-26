@@ -1,3 +1,5 @@
+using System.Linq;
+
 class RobotManager
 {
     public RobotCollection<Hash> hashCollection;
@@ -23,15 +25,10 @@ class RobotManager
     public int CurrentRobotScore()
     {
         int currentScore = 0;
-
-        foreach (Seven robot in sevenCollection.robots)
-            currentScore += 3;
-
-        foreach (Dolar robot in dolarCollection.robots)
-            currentScore += 2;
         
-        foreach (Hash robot in hashCollection.robots)
-            currentScore += 1;
+        currentScore += sevenCollection.robots.Sum(robot => 3);
+        currentScore += dolarCollection.robots.Sum(robot => 2);
+        currentScore += hashCollection.robots.Sum(robot => 1);
         
         return currentScore;
     }
