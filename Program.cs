@@ -8,6 +8,7 @@ internal class Program
 
         Roulette roulette = new Roulette(UI.EnterUsername());
         RobotManager robotManager = new RobotManager();
+        Rankings rankings = new Rankings();
 
         int[] result = await roulette.LaunchRoulette();
 

@@ -5,21 +5,17 @@ using System.Linq;
 
 class Roulette
 {
-    public string Name { get; set; }
-    public int Score { get; set; }
-    public int Tickets { get; set; }
+    public Player mainPlayer;
 
     public Roulette(string name)
     {
-        Name = name;
-        Score = 0;
-        Tickets = 10;
+        mainPlayer = new Player(name, 0);
     }
 
     // Realiza una tirada de la ruleta
     public async Task<int[]> LaunchRoulette()
     {
-        if (Tickets <= 0) return new int[0];
+        if (mainPlayer.Tickets <= 0) return new int[0];
 
         Console.Clear();
         char[] randomSlots = { '$', '%', '@', '#', '&', '+', '!', '?', '¿', '7' };

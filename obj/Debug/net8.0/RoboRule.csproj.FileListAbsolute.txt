@@ -13,3 +13,18 @@ C:\Users\alvar\Desktop\PROJECTS\DAW 2n\M03UF2AC6\obj\Debug\net8.0\refint\RoboRul
 C:\Users\alvar\Desktop\PROJECTS\DAW 2n\M03UF2AC6\obj\Debug\net8.0\RoboRule.pdb
 C:\Users\alvar\Desktop\PROJECTS\DAW 2n\M03UF2AC6\obj\Debug\net8.0\RoboRule.genruntimeconfig.cache
 C:\Users\alvar\Desktop\PROJECTS\DAW 2n\M03UF2AC6\obj\Debug\net8.0\ref\RoboRule.dll
+C:\Users\alvar\OneDrive\Escritorio\PROJECTOS\M03UF2AC6\bin\Debug\net8.0\RoboRule.exe
+C:\Users\alvar\OneDrive\Escritorio\PROJECTOS\M03UF2AC6\bin\Debug\net8.0\RoboRule.deps.json
+C:\Users\alvar\OneDrive\Escritorio\PROJECTOS\M03UF2AC6\bin\Debug\net8.0\RoboRule.runtimeconfig.json
+C:\Users\alvar\OneDrive\Escritorio\PROJECTOS\M03UF2AC6\bin\Debug\net8.0\RoboRule.dll
+C:\Users\alvar\OneDrive\Escritorio\PROJECTOS\M03UF2AC6\bin\Debug\net8.0\RoboRule.pdb
+C:\Users\alvar\OneDrive\Escritorio\PROJECTOS\M03UF2AC6\obj\Debug\net8.0\RoboRule.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\alvar\OneDrive\Escritorio\PROJECTOS\M03UF2AC6\obj\Debug\net8.0\RoboRule.AssemblyInfoInputs.cache
+C:\Users\alvar\OneDrive\Escritorio\PROJECTOS\M03UF2AC6\obj\Debug\net8.0\RoboRule.AssemblyInfo.cs
+C:\Users\alvar\OneDrive\Escritorio\PROJECTOS\M03UF2AC6\obj\Debug\net8.0\RoboRule.csproj.CoreCompileInputs.cache
+C:\Users\alvar\OneDrive\Escritorio\PROJECTOS\M03UF2AC6\obj\Debug\net8.0\RoboRule.sourcelink.json
+C:\Users\alvar\OneDrive\Escritorio\PROJECTOS\M03UF2AC6\obj\Debug\net8.0\RoboRule.dll
+C:\Users\alvar\OneDrive\Escritorio\PROJECTOS\M03UF2AC6\obj\Debug\net8.0\refint\RoboRule.dll
+C:\Users\alvar\OneDrive\Escritorio\PROJECTOS\M03UF2AC6\obj\Debug\net8.0\RoboRule.pdb
+C:\Users\alvar\OneDrive\Escritorio\PROJECTOS\M03UF2AC6\obj\Debug\net8.0\RoboRule.genruntimeconfig.cache
+C:\Users\alvar\OneDrive\Escritorio\PROJECTOS\M03UF2AC6\obj\Debug\net8.0\ref\RoboRule.dll
