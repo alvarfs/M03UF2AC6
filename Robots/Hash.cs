@@ -6,7 +6,7 @@ class Hash : Robot
     // Muestra los detalles
     public override string ToString()
     {
-        return $"{Model}-{Id}: Date {Date} | Robots Repaired: {NumberOfRepairs()}";
+        return $"MODEL: {Model}-{Id}: Date {Date} | Robots Repaired: {NumberOfRepairs()}";
     }
 
     // Indica cuantos robots ha reparado

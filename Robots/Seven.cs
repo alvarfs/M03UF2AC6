@@ -10,7 +10,7 @@ class Seven : Hash
     // Muestra los detalles
     public override string ToString()
     {
-        return $"{Model}-{Id}: Date {Date} | Robots Repaired: {NumberOfRepairs()} | Flights taken: {NumberOfFlights()}";
+        return $"MODEL: {Model}-{Id}: Date {Date} | Robots Repaired: {NumberOfRepairs()} | Flights taken: {NumberOfFlights()}";
     }
 
     // Indica cuantos vuelos ha realizado

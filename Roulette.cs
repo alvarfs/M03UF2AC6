@@ -2,6 +2,7 @@ using System.Text.Json;
 using System.Threading;
 using System.Net.Http;
 using System.Linq;
+using System.Threading.Tasks;
 
 class Roulette
 {
@@ -12,10 +13,21 @@ class Roulette
         mainPlayer = new Player(name, 0);
     }
 
-    // Realiza una tirada de la ruleta
-    public async Task<int[]> LaunchRoulette()
+    // Arrancamos la ruleta
+    public async Task<List<int[]>> LaunchRoulette()
     {
-        if (mainPlayer.Tickets <= 0) return new int[0];
+        List<int[]> allRolls = new List<int[]>();
+
+        await SpinRoulette(allRolls);
+
+        return allRolls;
+    }
+
+    // Realiza una tirada de la ruleta
+    private async Task SpinRoulette(List<int[]> rolls)
+    {
+        if (mainPlayer.Coins <= 0) return;
+        mainPlayer.Coins--;
 
         Console.Clear();
         char[] randomSlots = { '$', '%', '@', '#', '&', '+', '!', '?', '¿', '7' };
@@ -23,6 +35,7 @@ class Roulette
         Random random = new Random();
 
         int[] lastRoll = await GetRobotRoll();
+        rolls.Add(lastRoll);
 
         for (var i = 0; i < 20; i++)
         {
@@ -32,9 +45,28 @@ class Roulette
         }
 
         ShowFinalRoll(lastRoll, finalSlots, random);
-        ShowResult(lastRoll);
+        
+        if (lastRoll[0] == lastRoll[1] && lastRoll[1] == lastRoll[2])
+        {
+            if (lastRoll[0] == 0) UI.Write("TRIPLE COMBO!! ", 0, 20);
+            if (lastRoll[0] == 1) UI.Write("TRIPLE COMBO!! ", 1, 20);
+            if (lastRoll[0] == 2) UI.Write("TRIPLE COMBO!! ", 2, 20);
 
-        return lastRoll;
+            mainPlayer.Score += 10;
+            UI.WriteLine("+10 POINTS AND EXTRA SPIN", 3, 20);
+            mainPlayer.Coins++;
+
+            UI.NextSection();
+            await SpinRoulette(rolls);
+        }
+        else if (lastRoll[0] == lastRoll[1] || lastRoll[1] == lastRoll[2] || lastRoll[2] == lastRoll[0])
+        {
+            mainPlayer.Score += 5;
+            UI.Write("DOUBLE COMBO! ", 3, 20);
+            UI.WriteLine("+5 POINTS", 1, 20);
+        }
+
+        Console.WriteLine();
     }
 
     // Consigue la combinación final en base la API
@@ -78,15 +110,7 @@ class Roulette
             Console.WriteLine();
             UI.WriteLine("    +-+-+-+-+-+", 4);
         }
-    }
-
-    // Muestra el resultado en base a tu combinación
-    public void ShowResult(int[] roll)
-    {
-        // Comprobar:
-        // if Triple
-        // elif Double
-        // else No Combo
+        Console.WriteLine();
     }
 
     // Animación de la tirada mientras esperamos la combinación final
@@ -96,8 +120,7 @@ class Roulette
         for (var i = 0; i < 3; i++)
         {
             if (i == 1) UI.Write("--> | ", 4);
-
-            else UI.Write("    | ");
+            else UI.Write("    | ", 4);
 
             RandomRoll(slots, random);
 
@@ -134,7 +157,7 @@ class Roulette
             else 
             {
                 UI.Write($"{slots[selected]} ", roll[i]);
-                UI.Write($"|");
+                UI.Write($"|", 4);
             }
         }
     }

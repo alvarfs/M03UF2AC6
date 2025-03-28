@@ -7,12 +7,12 @@ class Robot
     {
         Id = id;
         Model = model;
-        Date = DateTime.Today;
+        Date = DateTime.Now;
     }
     
     // Muestra los detalles del robot
     public override string ToString()
     {
-        return $"{Model}-{Id}: Date {Date}";
+        return $"MODEL: {Model}-{Id}: Date {Date}";
     }
 }

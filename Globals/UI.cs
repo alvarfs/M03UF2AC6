@@ -1,7 +1,7 @@
 public class UI 
 {
     // WriteLine dinamico y con colores
-    public static void WriteLine(string text, int textColor = 7, int speed = 0)
+    public static void WriteLine(string text, int textColor = 8, int speed = 0)
     {
         Console.ForegroundColor = SelectColor(textColor);
 
@@ -16,7 +16,7 @@ public class UI
     }
 
     // Write dinamico y con colores
-    public static void Write(string text, int textColor = 7, int speed = 0)
+    public static void Write(string text, int textColor = 8, int speed = 0)
     {
         Console.ForegroundColor = SelectColor(textColor);
 
@@ -30,7 +30,7 @@ public class UI
     }
 
     // ReadLine dinamico y con colores
-    public static string ReadLine(int textColor = 7)
+    public static string ReadLine(int textColor = 8)
     {
         Console.ForegroundColor = SelectColor(textColor);
         string text = Console.ReadLine()!;
@@ -46,40 +46,6 @@ public class UI
         UI.Write("Press enter to continue... ", 1);
         Console.ReadLine();
         Console.Clear();
-    }
-
-    public static void MainTitle()
-    {
-        Console.Clear();
-        UI.WriteLine(@"
-$$$$$$$\            $$\                 $$$$$$$\            $$\           
-$$  __$$\           $$ |                $$  __$$\           $$ |          
-$$ |  $$ | $$$$$$\  $$$$$$$\   $$$$$$\  $$ |  $$ |$$\   $$\ $$ | $$$$$$\  
-$$$$$$$  |$$  __$$\ $$  __$$\ $$  __$$\ $$$$$$$  |$$ |  $$ |$$ |$$  __$$\ 
-$$  __$$< $$ /  $$ |$$ |  $$ |$$ /  $$ |$$  __$$< $$ |  $$ |$$ |$$$$$$$$ |
-$$ |  $$ |$$ |  $$ |$$ |  $$ |$$ |  $$ |$$ |  $$ |$$ |  $$ |$$ |$$   ____|
-$$ |  $$ |\$$$$$$  |$$$$$$$  |\$$$$$$  |$$ |  $$ |\$$$$$$  |$$ |\$$$$$$$\ 
-\__|  \__| \______/ \_______/  \______/ \__|  \__| \______/ \__| \_______|
-        ", 1);
-    }
-
-    public static string EnterUsername()
-    {
-        try
-        {
-            UI.Write("Please enter your username: ", 3, 20);
-            string name = UI.ReadLine(2);
-            if (name.Length >= 3) 
-                return name;
-            else throw 
-                new Exception("Your name must be longer than 2 characters...");
-        }
-        catch (Exception ex)
-        {
-            UI.WriteLine(ex.Message, 6, 20);
-            UI.NextSection();
-            return EnterUsername();
-        }
     }
 
     // Selector de color en base a un numero

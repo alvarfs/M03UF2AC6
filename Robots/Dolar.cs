@@ -5,7 +5,7 @@ class Dolar : Robot
     // Muestra los detalles
     public override string ToString()
     {
-        return $"{Model}-{Id}: Date {Date} | Robots Defeated: {NumberOfBattles()}";
+        return $"MODEL: {Model}-{Id}: Date {Date} | Robots Defeated: {NumberOfBattles()}";
     }
 
     // Indica cuantos combates ha realizado

@@ -16,8 +16,15 @@ class RobotManager
     // Muestra la información especifica de cada robot de cada colección
     public void ShowRobotCollections()
     {
+        Console.Clear();
+        
+        UI.WriteLine("HASH ROBOTS:", 0, 10);
         hashCollection.ConsultRobots();
+
+        UI.WriteLine("DOLAR ROBOTS:", 1, 10);
         dolarCollection.ConsultRobots();
+
+        UI.WriteLine("SEVEN ROBOTS:", 2, 10);
         sevenCollection.ConsultRobots();
     }
 
@@ -31,6 +38,46 @@ class RobotManager
         currentScore += hashCollection.robots.Sum(robot => 1);
         
         return currentScore;
+    }
+
+    // Genera robots en base a los resultados de la ruleta
+    public void GenerateRobots(List<int[]> result)
+    {
+        Random random = new Random();
+        
+        // Por cada combinación
+        foreach (int[] roll in result)
+        {
+            // Por cada slot de cada combinación
+            foreach (int slot in roll)
+            {
+                switch (slot)
+                {
+                    case 0:
+                        Hash hashRobot = new Hash(0, $"V.{random.Next(0, 100)}");
+                        AddNewHash(hashRobot);
+                        UI.WriteLine("HASH ROBOT CREATED!", 0, 15);
+                        break;
+
+                    case 1:
+                        Dolar dolarRobot = new Dolar(0, $"V.{random.Next(0, 100)}");
+                        AddNewDolar(dolarRobot);
+                        UI.WriteLine("DOLAR ROBOT CREATED!", 1, 15);
+                        break;
+
+                    case 2:
+                        Seven sevenRobot = new Seven(0, $"V.{random.Next(0, 100)}");
+                        AddNewSeven(sevenRobot);
+                        UI.WriteLine("SEVEN ROBOT CREATED!", 2, 15);
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+        }
+
+        Console.WriteLine();
     }
 
     // Añadimos un nuevo Seven a su colección
