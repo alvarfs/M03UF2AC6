@@ -6,7 +6,7 @@ internal class Program
     {
         Menu.MainTitle();
 
-        Roulette roulette = new Roulette(Menu.EnterUsername());
+        SlotMachine slotMachine = new SlotMachine(Menu.EnterUsername());
         RobotManager robotManager = new RobotManager();
         Rankings rankings = new Rankings();
 
@@ -14,38 +14,44 @@ internal class Program
 
         do
         {
-            switch (Menu.MainLobby())
+            switch (Menu.MainLobby(slotMachine))
             {
                 case 1:
-                    List<int[]> result = await roulette.LaunchRoulette();
+                    List<int[]> result = await slotMachine.LaunchSlotMachine();
+                    Console.WriteLine();
 
                     if (result.Count == 0)
-                    {
-                        Console.WriteLine();
-                        UI.WriteLine("You dont have more coins...", 6, 10);
-                    } 
+                        UI.WriteLine("You don't have more coins...", 6, 10);
                     else
                     {
                         robotManager.GenerateRobots(result);
+                        slotMachine.mainPlayer.RobotScore = robotManager.CurrentRobotScore();
+                        slotMachine.mainPlayer.SetNewScore();
 
-                        if (roulette.mainPlayer.Coins > 3)
-                            UI.WriteLine($"COINS LEFT: {roulette.mainPlayer.Coins}", 1, 15);
+                        if (slotMachine.mainPlayer.Coins > 6)
+                            UI.WriteLine($"COINS LEFT: {slotMachine.mainPlayer.Coins}", 2, 15);
+                        else if (slotMachine.mainPlayer.Coins > 3)
+                            UI.WriteLine($"COINS LEFT: {slotMachine.mainPlayer.Coins}", 1, 15);
                         else
-                            UI.WriteLine($"COINS LEFT: {roulette.mainPlayer.Coins}", 6, 30);
+                            UI.WriteLine($"COINS LEFT: {slotMachine.mainPlayer.Coins}", 6, 30);
                     }
 
                     break;
                 
                 case 2:
-                    Console.Clear();
-
-                    UI.WriteLine($"ROBOT POINTS: {robotManager.CurrentRobotScore()}", 3, 30);
-                    UI.WriteLine($"EXTRA POINTS: {roulette.mainPlayer.Score}", 1, 30);
-                    UI.WriteLine($"TOTAL SCORE: {roulette.mainPlayer.Score + robotManager.CurrentRobotScore()}", 2, 30);
+                    slotMachine.mainPlayer.ShowCurrentScore();
                     break;
                 
                 case 3:
                     robotManager.ShowRobotCollections();
+                    break;
+
+                case 4:
+                    rankings.SaveRanking(slotMachine.mainPlayer);
+                    break;
+
+                case 5:
+                    rankings.ShowTopRankings();
                     break;
 
                 case 0:

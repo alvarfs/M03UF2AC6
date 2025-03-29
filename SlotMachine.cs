@@ -4,38 +4,39 @@ using System.Net.Http;
 using System.Linq;
 using System.Threading.Tasks;
 
-class Roulette
+public class SlotMachine
 {
     public Player mainPlayer;
 
-    public Roulette(string name)
+    public SlotMachine(string name)
     {
         mainPlayer = new Player(name, 0);
     }
 
     // Arrancamos la ruleta
-    public async Task<List<int[]>> LaunchRoulette()
+    public async Task<List<int[]>> LaunchSlotMachine()
     {
         List<int[]> allRolls = new List<int[]>();
 
-        await SpinRoulette(allRolls);
+        await SpinSlotMachine(allRolls);
 
         return allRolls;
     }
 
     // Realiza una tirada de la ruleta
-    private async Task SpinRoulette(List<int[]> rolls)
+    private async Task SpinSlotMachine(List<int[]> rolls)
     {
         if (mainPlayer.Coins <= 0) return;
         mainPlayer.Coins--;
 
-        Console.Clear();
         char[] randomSlots = { '$', '%', '@', '#', '&', '+', '!', '?', '¿', '7' };
         char[] finalSlots = { '#', '$', '7' };
         Random random = new Random();
 
         int[] lastRoll = await GetRobotRoll();
         rolls.Add(lastRoll);
+
+        Console.Clear();
 
         for (var i = 0; i < 20; i++)
         {
@@ -50,23 +51,21 @@ class Roulette
         {
             if (lastRoll[0] == 0) UI.Write("TRIPLE COMBO!! ", 0, 20);
             if (lastRoll[0] == 1) UI.Write("TRIPLE COMBO!! ", 1, 20);
-            if (lastRoll[0] == 2) UI.Write("TRIPLE COMBO!! ", 2, 20);
+            if (lastRoll[0] == 2) UI.Write("JACKPOT!! ", 2, 20);
 
-            mainPlayer.Score += 10;
+            mainPlayer.ExtraScore += 10;
             UI.WriteLine("+10 POINTS AND EXTRA SPIN", 3, 20);
             mainPlayer.Coins++;
 
             UI.NextSection();
-            await SpinRoulette(rolls);
+            await SpinSlotMachine(rolls);
         }
         else if (lastRoll[0] == lastRoll[1] || lastRoll[1] == lastRoll[2] || lastRoll[2] == lastRoll[0])
         {
-            mainPlayer.Score += 5;
+            mainPlayer.ExtraScore += 5;
             UI.Write("DOUBLE COMBO! ", 3, 20);
             UI.WriteLine("+5 POINTS", 1, 20);
         }
-
-        Console.WriteLine();
     }
 
     // Consigue la combinación final en base la API

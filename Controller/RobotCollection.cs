@@ -20,7 +20,7 @@ class RobotCollection<T>
     {
         foreach (T robot in robots)
         {
-            UI.WriteLine($"{robot.ToString()}", 1, 3);
+            UI.WriteLine($"{robot.ToString()}", 3, 2);
         }
         Console.WriteLine();
     }

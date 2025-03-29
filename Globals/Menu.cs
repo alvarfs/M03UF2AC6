@@ -34,11 +34,15 @@ $$ |  $$ |\$$$$$$  |$$$$$$$  |\$$$$$$  |$$ |  $$ |\$$$$$$  |$$ |\$$$$$$$\
         }
     }
 
-    public static int MainLobby()
+    public static int MainLobby(SlotMachine slotMachine)
     {
         Console.Clear();
 
-        UI.WriteLine("1. Pull Lucky Spin", 2);
+        if (slotMachine.mainPlayer.Coins >= 1)
+            UI.WriteLine("1. Pull Lucky Spin", 2);
+        else
+            UI.WriteLine("1. Pull Lucky Spin", 6);
+            
         UI.WriteLine("2. Show points", 1);
         UI.WriteLine("3. Check Robots", 1);
         UI.WriteLine("4. Save Score", 1);
@@ -46,7 +50,15 @@ $$ |  $$ |\$$$$$$  |$$$$$$$  |\$$$$$$  |$$ |  $$ |\$$$$$$  |$$ |\$$$$$$$\
         UI.WriteLine("0. Exit", 6);
         Console.WriteLine();
 
-        UI.Write("Select a number: ", 3, 20);
-        return int.Parse(UI.ReadLine(1));
+        try
+        {
+            UI.Write("Select a number: ", 3, 20);
+            return int.Parse(UI.ReadLine(1));
+        }
+        catch (Exception)
+        {
+            return 99;
+        }
+        
     }
 }

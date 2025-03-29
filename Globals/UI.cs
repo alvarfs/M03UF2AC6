@@ -58,7 +58,7 @@ public class UI
             case 2: return ConsoleColor.Green;
             case 3: return ConsoleColor.Magenta;
             case 4: return ConsoleColor.DarkGray;
-            case 5: return ConsoleColor.DarkYellow;
+            case 5: return ConsoleColor.DarkRed;
             case 6: return ConsoleColor.Red;
             case 7: return ConsoleColor.Gray;
             default: return ConsoleColor.White;
