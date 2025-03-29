@@ -7,45 +7,60 @@ class Rankings
     // Guarda la puntuación del jugador
     public void SaveRanking(Player mainPlayer)
     {
-        List<Player> currentRankings = GetTopRankings();
-        currentRankings.Add(mainPlayer);
-
-        currentRankings.OrderByDescending(rank => rank.Score);
-
-        using (StreamWriter sw = File.CreateText(path))
+        try
         {
-            foreach (Player player in currentRankings)
-            {
-                sw.WriteLine($"{player.Name}|{player.Score}");
-            }
-        }
+            List<Player> currentRankings = GetTopRankings();
+            currentRankings.Add(mainPlayer);
 
-        UI.WriteLine("Your score has been registered! :D", 2, 20);
+            currentRankings.OrderByDescending(rank => rank.Score);
+
+            using (StreamWriter sw = File.CreateText(path))
+            {
+                foreach (Player player in currentRankings)
+                {
+                    sw.WriteLine($"{player.Name}|{player.Score}");
+                }
+            }
+
+            UI.WriteLine("Your score has been registered! :D", 2, 20);
+        }
+        catch (Exception)
+        {
+            UI.WriteLine("An error ocurred, make sure CurrentRankings.txt exists inside Rankings...", 4, 30);
+        }
+        
     }
 
     // Muestra las mejores puntuaciones
     public void ShowTopRankings()
     {
-        List<Player> currentRankings = GetTopRankings();
-                    
-        Console.WriteLine();
-        UI.WriteLine("CURRENT TOP ROBORULE RANKS:", 2, 30);
-        Console.WriteLine();
+        try
+        {
+            List<Player> currentRankings = GetTopRankings();
+                        
+            Console.WriteLine();
+            UI.WriteLine("CURRENT TOP ROBORULE RANKS:", 2, 30);
+            Console.WriteLine();
 
-        if (currentRankings.Count >= 1)
-            UI.WriteLine($"USERNAME: {currentRankings[0].Name} | SCORE: {currentRankings[0].Score}", 1, 30);
-        else
-            UI.WriteLine($"USERNAME: - | SCORE: -", 1, 30);
-        
-        if (currentRankings.Count >= 2)
-            UI.WriteLine($"USERNAME: {currentRankings[1].Name} | SCORE: {currentRankings[1].Score}", 7, 30);
-        else
-            UI.WriteLine($"USERNAME: - | SCORE: -", 7, 30);
-        
-        if (currentRankings.Count >= 3)
-            UI.WriteLine($"USERNAME: {currentRankings[2].Name} | SCORE: {currentRankings[2].Score}", 5, 30);
-        else
-            UI.WriteLine($"USERNAME: - | SCORE: -", 5, 30);
+            if (currentRankings.Count >= 1)
+                UI.WriteLine($"USERNAME: {currentRankings[0].Name} | SCORE: {currentRankings[0].Score}", 1, 30);
+            else
+                UI.WriteLine($"USERNAME: - | SCORE: -", 1, 30);
+            
+            if (currentRankings.Count >= 2)
+                UI.WriteLine($"USERNAME: {currentRankings[1].Name} | SCORE: {currentRankings[1].Score}", 7, 30);
+            else
+                UI.WriteLine($"USERNAME: - | SCORE: -", 7, 30);
+            
+            if (currentRankings.Count >= 3)
+                UI.WriteLine($"USERNAME: {currentRankings[2].Name} | SCORE: {currentRankings[2].Score}", 5, 30);
+            else
+                UI.WriteLine($"USERNAME: - | SCORE: -", 5, 30);
+        }
+        catch (Exception)
+        {
+            UI.WriteLine("An error ocurred, make sure CurrentRankings.txt exists inside Rankings...", 4, 30);
+        }
     }
 
     // Recoge las mejores puntuaciones

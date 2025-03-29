@@ -59,7 +59,7 @@ internal class Program
                     break;
 
                 default:
-                    UI.WriteLine("Unknown option, please try again...", 4, 10);
+                    UI.WriteLine("Unknown option, please try again...", 4, 30);
                     break;
             }
 
