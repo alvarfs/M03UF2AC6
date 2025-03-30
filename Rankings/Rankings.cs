@@ -2,7 +2,7 @@ using System.Linq;
 
 class Rankings
 {
-    public string path = @".\Rankings\CurrentRankings.txt";
+    public string path = @"./Rankings/CurrentRankings.txt";
 
     // Guarda la puntuación del jugador
     public void SaveRanking(Player mainPlayer)

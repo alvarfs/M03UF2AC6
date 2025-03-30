@@ -95,9 +95,10 @@ public class SlotMachine
         {
             if (i == 1) 
             {
-                UI.Write("--> | ", 4);
+                UI.Write("-->", 1);
+                UI.Write(" | ", 4);
                 WinnerRoll(lastRoll, slots);
-                UI.Write(" <--", 4);
+                UI.Write(" <--", 1);
             }
 
             else 
@@ -118,12 +119,16 @@ public class SlotMachine
         UI.WriteLine("    +-+-+-+-+-+", 4);
         for (var i = 0; i < 3; i++)
         {
-            if (i == 1) UI.Write("--> | ", 4);
+            if (i == 1)
+            {
+                UI.Write("-->", 1);
+                UI.Write(" | ", 4);
+            }
             else UI.Write("    | ", 4);
 
             RandomRoll(slots, random);
 
-            if (i == 1) UI.Write(" <--", 4);
+            if (i == 1) UI.Write(" <--", 1);
 
             Console.WriteLine();
             UI.WriteLine("    +-+-+-+-+-+", 4);
