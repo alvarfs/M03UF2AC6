@@ -12,7 +12,7 @@ class Rankings
             List<Player> currentRankings = GetTopRankings();
             currentRankings.Add(mainPlayer);
 
-            currentRankings.OrderByDescending(rank => rank.Score);
+            currentRankings = currentRankings.OrderByDescending(rank => rank.Score).ToList();
 
             using (StreamWriter sw = File.CreateText(path))
             {

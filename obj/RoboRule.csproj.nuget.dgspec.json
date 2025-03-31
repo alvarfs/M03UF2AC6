@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\alvar\\OneDrive\\Escritorio\\PROJECTOS\\M03UF2AC6\\RoboRule.csproj": {}
+    "C:\\Users\\alvar\\Desktop\\PROJECTS\\DAW 2n\\M03UF2AC6\\RoboRule.csproj": {}
   },
   "projects": {
-    "C:\\Users\\alvar\\OneDrive\\Escritorio\\PROJECTOS\\M03UF2AC6\\RoboRule.csproj": {
+    "C:\\Users\\alvar\\Desktop\\PROJECTS\\DAW 2n\\M03UF2AC6\\RoboRule.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\alvar\\OneDrive\\Escritorio\\PROJECTOS\\M03UF2AC6\\RoboRule.csproj",
+        "projectUniqueName": "C:\\Users\\alvar\\Desktop\\PROJECTS\\DAW 2n\\M03UF2AC6\\RoboRule.csproj",
         "projectName": "RoboRule",
-        "projectPath": "C:\\Users\\alvar\\OneDrive\\Escritorio\\PROJECTOS\\M03UF2AC6\\RoboRule.csproj",
+        "projectPath": "C:\\Users\\alvar\\Desktop\\PROJECTS\\DAW 2n\\M03UF2AC6\\RoboRule.csproj",
         "packagesPath": "C:\\Users\\alvar\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\alvar\\OneDrive\\Escritorio\\PROJECTOS\\M03UF2AC6\\obj\\",
+        "outputPath": "C:\\Users\\alvar\\Desktop\\PROJECTS\\DAW 2n\\M03UF2AC6\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\alvar\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -53,7 +53,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

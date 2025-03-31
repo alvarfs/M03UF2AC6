@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RoboRule")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e833c5279efc5f01ce2d2778ab0f853a492da2b4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1cdcd329e5f8a411b6eca69bbe520dbc8d4f8179")]
 [assembly: System.Reflection.AssemblyProductAttribute("RoboRule")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RoboRule")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
