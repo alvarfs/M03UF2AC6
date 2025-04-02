@@ -34,6 +34,8 @@ class Rankings
     // Muestra las mejores puntuaciones
     public void ShowTopRankings()
     {
+        Console.Clear();
+        
         try
         {
             List<Player> currentRankings = GetTopRankings();

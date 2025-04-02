@@ -4,7 +4,7 @@ using System.Net.Http;
 using System.Linq;
 using System.Threading.Tasks;
 
-public class SlotMachine
+class SlotMachine
 {
     public Player mainPlayer;
 
@@ -49,9 +49,9 @@ public class SlotMachine
         
         if (lastRoll[0] == lastRoll[1] && lastRoll[1] == lastRoll[2])
         {
-            if (lastRoll[0] == 0) UI.Write("TRIPLE COMBO!! ", 0, 20);
-            if (lastRoll[0] == 1) UI.Write("TRIPLE COMBO!! ", 1, 20);
-            if (lastRoll[0] == 2) UI.Write("JACKPOT!! ", 2, 20);
+            if (lastRoll[0] == 0) {UI.Write("TRIPLE COMBO!! ", 0, 20);}
+            if (lastRoll[0] == 1) {UI.Write("TRIPLE COMBO!! ", 1, 20);}
+            if (lastRoll[0] == 2) {UI.Write("JACKPOT!! ", 2, 20);}
 
             mainPlayer.ExtraScore += 10;
             UI.WriteLine("+10 POINTS AND EXTRA SPIN", 3, 20);
@@ -72,7 +72,7 @@ public class SlotMachine
     public async Task<int[]> GetRobotRoll()
     {
         using HttpClient client = new HttpClient();
-        string url = "https://www.randomnumberapi.com/api/v1.0/random?min=0&max=3&count=3";
+        string url = "https://www.randomnumberapi.com/api/v1.0/random?min=1&max=3&count=3";
 
         try
         {
@@ -164,5 +164,43 @@ public class SlotMachine
                 UI.Write($"|", 4);
             }
         }
+    }
+
+    public void ShowResult(List<int[]> result, RobotManager robotManager)
+    {
+        Console.WriteLine();
+
+        robotManager.GenerateRobots(result);
+        mainPlayer.RobotScore = robotManager.CurrentRobotScore();
+        mainPlayer.SetNewScore();
+
+        if (mainPlayer.Coins > 6)
+            UI.WriteLine($"COINS LEFT: {mainPlayer.Coins}", 2, 15);
+        else if (mainPlayer.Coins > 3)
+            UI.WriteLine($"COINS LEFT: {mainPlayer.Coins}", 1, 15);
+        else
+            UI.WriteLine($"COINS LEFT: {mainPlayer.Coins}", 6, 30);
+    }
+
+    public bool ContinueGambling()
+    {
+        try
+        {
+            Console.WriteLine();
+
+            UI.Write("Continue gambling? [Y/N] ", 1);
+            ConsoleKeyInfo keyInfo = Console.ReadKey(intercept: true);
+            
+            Console.WriteLine();
+        
+            if (keyInfo.Key == ConsoleKey.N)
+                return false;
+            return true;
+        }
+        catch (Exception)
+        {
+            return true;
+        }
+        
     }
 }

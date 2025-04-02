@@ -34,19 +34,18 @@ $$ |  $$ |\$$$$$$  |$$$$$$$  |\$$$$$$  |$$ |  $$ |\$$$$$$  |$$ |\$$$$$$$\
         }
     }
 
-    public static int MainLobby(SlotMachine slotMachine)
+    public static int MainLobby(int coins)
     {
         Console.Clear();
 
-        if (slotMachine.mainPlayer.Coins >= 1)
+        if (coins >= 1)
             UI.WriteLine("1. Pull Lucky Spin", 2);
         else
             UI.WriteLine("1. Pull Lucky Spin", 6);
             
         UI.WriteLine("2. Show points", 1);
         UI.WriteLine("3. Check Robots", 1);
-        UI.WriteLine("4. Save Score", 1);
-        UI.WriteLine("5. Show Scoreboard", 1);
+        UI.WriteLine("4. Show Scoreboard", 1);
         UI.WriteLine("0. Exit", 6);
         Console.WriteLine();
 

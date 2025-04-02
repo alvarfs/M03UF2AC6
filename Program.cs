@@ -14,28 +14,14 @@ internal class Program
 
         do
         {
-            switch (Menu.MainLobby(slotMachine))
+            switch (Menu.MainLobby(slotMachine.mainPlayer.Coins))
             {
                 case 1:
-                    List<int[]> result = await slotMachine.LaunchSlotMachine();
-                    Console.WriteLine();
-
-                    if (result.Count == 0)
-                        UI.WriteLine("You don't have more coins...", 6, 10);
+                    if (slotMachine.mainPlayer.Coins > 0)
+                        await StartGambling(slotMachine, robotManager, rankings);
                     else
-                    {
-                        robotManager.GenerateRobots(result);
-                        slotMachine.mainPlayer.RobotScore = robotManager.CurrentRobotScore();
-                        slotMachine.mainPlayer.SetNewScore();
-
-                        if (slotMachine.mainPlayer.Coins > 6)
-                            UI.WriteLine($"COINS LEFT: {slotMachine.mainPlayer.Coins}", 2, 15);
-                        else if (slotMachine.mainPlayer.Coins > 3)
-                            UI.WriteLine($"COINS LEFT: {slotMachine.mainPlayer.Coins}", 1, 15);
-                        else
-                            UI.WriteLine($"COINS LEFT: {slotMachine.mainPlayer.Coins}", 6, 30);
-                    }
-
+                        UI.WriteLine("You don't have more coins...", 6, 10);
+                    
                     break;
                 
                 case 2:
@@ -47,10 +33,6 @@ internal class Program
                     break;
 
                 case 4:
-                    rankings.SaveRanking(slotMachine.mainPlayer);
-                    break;
-
-                case 5:
                     rankings.ShowTopRankings();
                     break;
 
@@ -69,6 +51,25 @@ internal class Program
 
         UI.WriteLine("BYE BYE! :P", 1, 20);
 
+    }
+
+    public static async Task StartGambling(SlotMachine slot, RobotManager robotManager, Rankings ranks)
+    {
+        bool goGambling = false;
+        do
+        {
+            List<int[]> result = await slot.LaunchSlotMachine();
+            slot.ShowResult(result, robotManager);   
+
+            if (slot.mainPlayer.Coins > 0)
+                goGambling = slot.ContinueGambling();
+            else
+            {
+                goGambling = false;
+                ranks.SaveRanking(slot.mainPlayer);
+            }
+
+        } while (goGambling);
     }
 
 }
